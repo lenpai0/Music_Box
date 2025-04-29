@@ -16,7 +16,7 @@
     - DFRobotDFPlayerMini by DFRobot
     - MFRC522 by GithubCommunity
 
-    Be sure to change the RFID tag @ line 124 & 137 to match your RFID tag ID
+    Be sure to change the RFID tag @ line 130 & 143 to match your RFID tag ID
 
   **WARNING && RECOMMENDATION**
   I recommend using an external power supply especially for the DFPlayer Mini. I had problems where
@@ -109,15 +109,21 @@ void loop() {
   // an RFID card has been scanned but no UID
   if (!myRFID.PICC_ReadCardSerial()) return;
 
-  //idk what the next few lines are doing but just dont touch it
+  //Show UID on serial monitor
+  //Serial.print("USER ID tag :"); // uncomment to show RFID tag
+
+  //parsing string we received from RFID reader
   String content = "";
 
   for (byte i = 0; i < myRFID.uid.size; i++) {
+    //uncomment to show RFID tag
     //Serial.print(myRFID.uid.uidByte[i] < 0x10 ? " 0" : " ");
     //Serial.print(myRFID.uid.uidByte[i], HEX);
     content.concat(String(myRFID.uid.uidByte[i] < 0x10 ? " 0" : " "));
     content.concat(String(myRFID.uid.uidByte[i], HEX));
   }
+
+  //Serial.println(); // uncomment to show RFID tag
 
   content.toUpperCase();
 
