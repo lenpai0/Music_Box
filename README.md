@@ -14,15 +14,28 @@ This is a modified code of my music box intended for general music box use. This
 The way the program works is if the RFID reader finds an RFID tag and if it matches the song ID inside the program, it will send a command to the mp3 player module to output the corresponding song file that is stored on an SD card. The song will keep playing as long as the RFID tag is continously being scanned by the reader and stops if the tag is removed. Features included is the ability to pause and resume if you remove and scan the same tag.
 
 ## Instructions
-This is a list of the components I used to make my project work. 
-
 ### Components used
+This is a list of the components I used to make my project work. 
 - Arduino Uno
 - RFID RC522
 - DFPlayer Mini
 - Mifare NFC Sticker
 
-### Schematic
+### Music Box Schematic
+Below is the schematic I used to make the music box.
+![image](https://github.com/user-attachments/assets/38e2b7f7-81da-4c73-a753-0261d115e450)
+
+Few things to note:
+1. It is highly recommended that you use an external power supply especially for the DFPlayer Mini.
+   *Microcontrollers like an Arduino are not design to output enough current for power hungry device like motors and speakers. Too much current draw can "brick" a component for good so be warned!*
+2. Datasheet for the DFPlayer Mini suggest using a "resistor in series" between the microcontroller and DFPlayer if the microcontroller output is 5V.
+   *However, I think they meant voltage divider circuit because DFPlayer uses 3V3 and Arduino uses 5V and this resistor will only limit the current going in the player. But what do I know? I'm not an engineer.*
+3. You may noticed in some of my videos that I have a 100uf capacitor parallel to 5V and GND. I use it as a decoupling capacitor and it basically takes spiky uneven voltage line and smoothens it. This capacitor is not necessary for the music box to function but theorically could help if you have a noisy power signal. It's a small precaution I take.
+
+### Getting the RFID tag 
+
+
+### Before Uploading the sketch
 
 ## Resourced used
 - RFID code and guide used: https://www.youtube.com/watch?v=lg8HRY8q004
