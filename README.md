@@ -4,12 +4,12 @@ Heavily inspired by this [twitter post](https://x.com/xchikex/status/18299068602
 
 Music box image here
 
-I made a music box using 3 main component. RFID reader, mp3 player speaker module and Arduino. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they provided a crucial detail that they used the RFID RC522 module. I then wanted to make this same contraption but instead make a disc representing some of my favourite songs. Similar to how a yo-kai watch medal works but 10 times more complicated. This was my first time using RFID and it wasn't as bad as I thought.
+I made a music box using 3 main component. RFID reader, mp3 player speaker module and Arduino. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they did provide a crucial detail that they had used the RFID RC522 module. I been wanting to make something similar ever since they posted that video but instead make my own 3D-printed hand-painted disc representing some of my favourite songs. Similar to how Yo-Kai Watch medals works but 10 times more complicated. This was also my first time using RFID.
 
-This branch will only include the instructions, schematic and code. I will not provide the song files nor the 3D CAD models of the disc as I quite literally traced the album art in fusion and probably get in copyright trouble if I share it. 
+This branch will only include the instructions, schematic and code to make a music box to function. I will not provide the song files nor the 3D CAD models of the disc as I quite literally traced the album art in Fusion360 and probably get in copyright trouble if I share it. 
 
-## Intro
-This is a modified code of my music box intended for general music box use. This program should work with any arduino board. This code uses SPI, SoftwareSerial and hardware Serial. 
+# Intro
+This is a modified code of my music box intended for general music box use. This program should work with any Arduino board. This code uses SPI, SoftwareSerial and hardware serial with hardware serial used for monitoring feedback. 
 
 The way the program works is if the RFID reader finds an RFID tag and if it matches the song ID inside the program, it will send a command to the mp3 player module to output the corresponding song file that is stored on an SD card. The song will keep playing as long as the RFID tag is continously being scanned by the reader and stops if the tag is removed. Features included is the ability to pause and resume if you remove and scan the same tag.
 
@@ -19,21 +19,23 @@ This is a list of the components I used to make my project work.
 - Arduino Uno
 - RFID RC522
 - DFPlayer Mini
+- 3 watt speaker
 - SD Card (32GB is the maximum storage size supported)
 - Mifare NFC Sticker
 
 ## Music box schematic
 Below is the schematic I used to make the music box.
-![image](https://github.com/user-attachments/assets/38e2b7f7-81da-4c73-a753-0261d115e450)
+![image](https://github.com/user-attachments/assets/658f7880-a122-4f69-a29c-42a18f97eebd)
 
 Few things to note:
 1. It is highly recommended that you use an external power supply especially for the DFPlayer Mini.
    
    *Microcontrollers like an Arduino are not design to output enough current for power hungry device like motors and speakers. Too much current draw can "brick" a component for good so be warned!*
-2. Datasheet for the DFPlayer Mini suggest using a "resistor in series" between the microcontroller and DFPlayer if the microcontroller output is 5V.
+2. SPK_1 connects to the positive polarity of the speaker and SPK_2 connects to the negative polarity
+3. Datasheet for the DFPlayer Mini suggest using a "resistor in series" between the microcontroller and DFPlayer if the microcontroller output is 5V.
    
    *However, I think they meant voltage divider circuit because DFPlayer uses 3V3 and Arduino uses 5V and this resistor will only limit the current going in the player. The circuit still works even with this current limiting resistor. But what do I know? I'm not an engineer.*
-3. You may noticed in some of my videos that I have a 100uf capacitor parallel to 5V and GND. I use it as a decoupling capacitor and it basically takes spiky uneven voltage line and smoothens it. This capacitor is not necessary for the music box to function but theorically could help if you have a noisy power signal. It's a small precaution I take.
+4. You may noticed in some of my videos that I have a 100uf capacitor parallel to 5V and GND. I use it as a decoupling capacitor and it basically takes spiky uneven voltage line and smoothens it. This capacitor is not necessary for the music box to function but theorically could help if you have a noisy power signal. It's a small precaution I take.
 
 ## Libraries used
 Make sure the following libraries are installed:
@@ -56,7 +58,7 @@ Option 1 - Only RFID RC522 available:
 
 Option 2 - Both RFID RC522 and DFPlayer Mini available:
 
-- Build the circuit from the schematic above then use the code provided in this branch and uncomment the following lines in the sketch (ctrl-f is your best friend here):
+- Build the circuit from the schematic above then use the code provided in this branch. Uncomment the following lines in the sketch (ctrl-f is your best friend here):
   
   `//Serial.print("USER ID tag :");`
 
@@ -65,12 +67,13 @@ Option 2 - Both RFID RC522 and DFPlayer Mini available:
   `//Serial.print(myRFID.uid.uidByte[i], HEX);`
 
   `//Serial.println();`
-- Follow [After uploading sketch](https://github.com/lenpai0/Music_Box/blob/main/README.md#after-uploading-the-sketch) and open serial monitor to view feedback
+- Upload the sketch and [open serial monitor to view feedback](https://github.com/lenpai0/Music_Box/blob/main/README.md#after-uploading-the-sketch)
 
 ## Storing files in SD card
-You will need to source a sound file to use. Both .mp3 and .WAV are supported with the DFPlayer. 
+You will need to source sound files to use. Both .mp3 and .WAV are supported with the DFPlayer. 
 
-This image is taken from the DFPlayer datasheet. Although there are no folder or files starting from 0, the code will still work. Note that DFPlayer Mini can support SD card up to 32GB. The sound folder limit is 0-99 and file limit is 0-255. So you can hold a lot of sound files.
+This image is taken from the DFPlayer datasheet. Although there are no folder or files starting from 0, the code will still work. Note that DFPlayer Mini can support SD card up to 32GB. The sound folder limit is 0-99 and file per folder limit is 0-255. So you can hold a lot of sound files.
+
 ![image](https://github.com/user-attachments/assets/542fef3a-64e7-40d1-b774-1c11a23e1066)
 
 Once you have sound files to use, you must follow the naming convention. 
@@ -93,7 +96,7 @@ Remember to eject the SD card before removing.
 ## Before uploading the sketch
 Download `music_box.ino`. Update the sketch to match your RFID tag name. Look for the lines like `content.substring(1) == "A1 2F 90 49"` and replace the tag ID. If you have more than two sound files, be sure to add additional code and follow the layout. 
 
-i.e. The next lines of code for song3 would look something like this
+i.e. The next lines of code for song3 would look something like this and so on for additional sound files
 ```
 else if (content.substring(1) == "xx xx xx xx" && spkrStatus != 3) { //change here the UID
     //resume feature
@@ -116,6 +119,18 @@ You can also change the pins for SDA, RST, software TX and software RX if needed
 Open serial monitor to see the feedback.
 
 ![image](https://github.com/user-attachments/assets/626dc969-4cf1-4701-b55a-dc0a978ed55f)
+
+Upon start up, you will see one of the two messages.
+
+1. `"im ready"` states that initialization for all the components are successful and ready to run
+2. `"Not initialized: 1. Check the DFPlayer Mini connections 2. Insert an SD card"` Something is wrong with the DFPlayer Mini. Follow the two troubleshooting points. In my experience, sometimes power cycling the Arduino without changing anything can fix it (power cycling is a fancy industry term for turning something off and on lmao)
+
+## Problem experienced
+- External power supply is a must if I want this to function longer than 3 minutes of using. What I mean is I would accidentally move my 5V wire on my breadboard and what I can assume, caused the voltage level supplying my RFID and DFPlayer to become unstable which makes everything to stop working. I know this because I would bump into the box and then hear a small "popping" sound from the speaker that's usually associated when starting up. Power cycling the Arduino will fix whenever that happens. 
+
+- Moving the wires between the DFPlayer and speaker might cause the speaker to suddenly sound distorted. I would get too scared of the noise thinking something will break that I would instantly unplug the Arduino and plug back which resolves the issue.
+
+- SD card/SD card reader is sometimes finicky and likes to randomly corrupt itself whenever I plug in my SD card to my computer forcing me to format. This is why I always keep a backup file for my SD card.
 
 ## Resourced used
 - RFID code and guide used: https://www.youtube.com/watch?v=lg8HRY8q004
