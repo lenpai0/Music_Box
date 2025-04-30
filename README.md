@@ -4,7 +4,10 @@ Heavily inspired by this [twitter post](https://x.com/xchikex/status/18299068602
 
 <img src="https://github.com/user-attachments/assets/84d9c411-e8ce-44d7-b01f-54059618e28d" width = "700">
 
-I made a music box using three main components. RFID reader, mp3 player speaker module and Arduino. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they did provide a crucial detail that they had used the RFID RC522 module. I been wanting to make something similar ever since they posted that video but instead make my own 3D-printed hand-painted disc representing some of my favourite songs. Similar to how Yo-Kai Watch medals works but 10 times more complicated. This was also my first time using RFID.
+<img src="https://github.com/user-attachments/assets/ef5abdcc-180a-49ff-803e-d900b0fa6908" width = "700">
+
+
+I made a music box using three main components. RFID reader, mp3 player speaker module and Arduino. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they did provide a crucial detail that they had used the RFID RC522 module. I been wanting to make something similar ever since they posted that video but instead make my own 3D-printed hand-painted disc representing some of my favourite songs. Similar to how Yo-Kai Watch medals works but 10 times more complicated. I should mentioned I used magnets for the satisfying snapping sound but also to hold the disc so always in front of the RFID reader. This was also my first time using RFID. 
 
 I will only include the guide, schematic and code to make the music box function. I will not provide the song files nor the 3D CAD models of the disc as I quite literally traced the album art in Fusion360 and probably get in copyright trouble if I share it. 
 
@@ -128,7 +131,7 @@ Upon start up, you will see one of the two messages.
 ## Demo
 This is a demo of the project using the same code posted here.
 
-https://github.com/user-attachments/assets/b1c85888-1524-4c15-830b-b768a6b12333
+https://github.com/user-attachments/assets/7b9280ac-cf74-4e77-b26d-84fbd12c0a22
 
 Song used for demo
 - [ビノミ (Binomi) / MARETU](https://www.youtube.com/watch?v=fGizrX4JjPg)
