@@ -4,7 +4,10 @@ Heavily inspired by this [twitter post](https://x.com/xchikex/status/18299068602
 
 <img src="https://github.com/user-attachments/assets/84d9c411-e8ce-44d7-b01f-54059618e28d" width = "700">
 
+Pictures of the music box
+
 <img src="https://github.com/user-attachments/assets/ef5abdcc-180a-49ff-803e-d900b0fa6908" width = "700">
+
 
 
 I made a music box using three main components. RFID reader, mp3 player speaker module and Arduino. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they did provide a crucial detail that they had used the RFID RC522 module. I been wanting to make something similar ever since they posted that video but instead make my own 3D-printed hand-painted disc representing some of my favourite songs. Similar to how Yo-Kai Watch medals works but 10 times more complicated. I should mentioned I used magnets for the satisfying snapping sound but also to hold the disc so always in front of the RFID reader. This was also my first time using RFID. 
@@ -129,7 +132,7 @@ Upon start up, you will see one of the two messages.
 2. `"Not initialized: 1. Check the DFPlayer Mini connections 2. Insert an SD card"` Something is wrong with the DFPlayer Mini. Follow the two troubleshooting points. In my experience, sometimes power cycling the Arduino without changing anything can fix it (power cycling is a fancy industry term for turning something off and on lmao)
 
 ## Demo
-This is a demo of the project using the same code posted here.
+This is a demo of the project using the same code posted here. Here is a [YouTube link](https://www.youtube.com/watch?v=7Qq8ZaPxRZM) to the same video below
 
 https://github.com/user-attachments/assets/7b9280ac-cf74-4e77-b26d-84fbd12c0a22
 
