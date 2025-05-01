@@ -54,7 +54,7 @@ Make sure the following libraries are installed:
 ![image](https://github.com/user-attachments/assets/f54009ed-f50c-47d8-b9e8-d6ded8fb05f4)
 
 ## Getting the RFID tag 
-You will need to obtain the RFID tags name using the RFID RC522 reader. I recommend copying the names down somewhere like in a spreadsheet.
+You will need to obtain the RFID tags name using the RFID RC522 reader. 
 
 Two options to get the RFID tag name both using the RFID reader.
 
@@ -74,6 +74,8 @@ Option 2 - Both RFID RC522 and DFPlayer Mini available:
 
   `//Serial.println();`
 - Upload the sketch. Follow `After uploading sketch` below and open serial monitor to view feedback
+
+Either way, you should be expecting a message that says something like `USER ID tag : XX XX XX XX` I recommend copying the RFID tag somewhere like a spreadsheet.
 
 ## Storing files in SD card
 You will need to source sound files to use. Both .mp3 and .WAV are supported with the DFPlayer. 
