@@ -10,9 +10,7 @@ Pictures of the music box
 
 
 
-I made a music box using three main components. RFID reader, mp3 player speaker module and Arduino. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they did provide a crucial detail that they had used the RFID RC522 module. I been wanting to make something similar ever since they posted that video but instead make my own 3D-printed hand-painted disc representing some of my favourite songs. Similar to how Yo-Kai Watch medals works but 10 times more complicated. I should mentioned I used magnets for the satisfying snapping sound but also to hold the disc so always in front of the RFID reader. This was also my first time using RFID. 
-
-I will only include the guide, schematic and code to make the music box function. I will not provide the song files nor the 3D CAD models of the disc as I quite literally traced the album art in Fusion360 and probably get in copyright trouble if I share it. 
+I made a music box using three main components. RFID reader, mp3 player speaker module and Arduino Uno. I was heavily inspired by a twitter post made by the user @xchikex & @cyousen2039. While they didn't provide any code or schematic, they did provide a crucial detail that they had used the RFID RC522 module. I been wanting to make something similar ever since but instead make my own 3D-printed hand-painted disc representing some of my favourite songs. Similar to how Yo-Kai Watch medals works but 10 times more complicated. I should mentioned I used magnets for the satisfying snapping sound but also to hold the disc so it's always in front of the RFID reader. This was also my first time using RFID. 
 
 # Intro
 This is a modified code of my music box intended for general music box use. This program should work with any Arduino board. This code uses SPI, SoftwareSerial and hardware serial with hardware serial used for monitoring feedback. 
@@ -149,7 +147,10 @@ Song used for demo
 
 - SD card/SD card reader is sometimes finicky and likes to randomly corrupt itself whenever I plug in my SD card to my computer forcing me to format. This is why I always keep a backup file for my SD card.
 
-- For some reason this is the only project I had problems where my Arduino would randomly encounter "Unrecognized device" problems after a few use. Windows would suddenly not recognize the port no matter how many times I reset the board, unplug and plug the board, or update drivers. I have a good USB connector and the only way I can fix this is by resetting my computer. I'm not sure if I had installed something that is interfering the serial communication between the Arduino and Windows or if the libraries I'm using are doing something funky at the start of boot up that I am not aware of.
+- This is the only project I had problems where my Arduino would randomly encounter "Unrecognized device" problems after a few use. Windows would suddenly not recognize the port no matter how many times I reset the board, unplug and plug the board, or update drivers. I have a good USB connector and the only way I can fix this is by resetting my computer. I'm not sure if I had installed something that is interfering the serial communication between the Arduino and Windows or if the libraries I'm using are doing something funky at the start of boot up that I am not aware of.
+
+## Vocaloid disc I made 
+   - binomi / MARETU https://www.thingiverse.com/thing:7042155/files
 
 ## Resourced used
 - RFID code and guide used: https://www.youtube.com/watch?v=lg8HRY8q004
