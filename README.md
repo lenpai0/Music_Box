@@ -149,12 +149,18 @@ Song used for demo
 
 - This is the only project I had problems where my Arduino would randomly encounter "Unrecognized device" problems after a few use. Windows would suddenly not recognize the port no matter how many times I reset the board, unplug and plug the board, or update drivers. I have a good USB connector and the only way I can fix this is by resetting my computer. I'm not sure if I had installed something that is interfering the serial communication between the Arduino and Windows or if the libraries I'm using are doing something funky at the start of boot up that I am not aware of.
 
-## Vocaloid disc I made 
+## Vocaloid disc 
    - binomi / MARETU https://www.thingiverse.com/thing:7042155/files
 
 ## Resourced used
 - RFID code and guide used: https://www.youtube.com/watch?v=lg8HRY8q004
-- DFPlayer Mini code and guide used: https://www.youtube.com/watch?v=7WiSeQxb1bU 
+- DFPlayer Mini code and guide used: https://www.youtube.com/watch?v=7WiSeQxb1bU
+
+## Wiring drawing (requested)
+
+Note that resistor and capacitor are not shown. Please refer to my notes on Music-box-schematic from above.
+
+<img width="770" height="540" alt="rfid speaker drawing schematic v2" src="https://github.com/user-attachments/assets/5c0188c1-99e8-48a4-b1eb-964180d0efe7" />
 
 ## Usage
 If you find yourself using this code to add to your project or make a video/tutorial with it, I simply ask that you credit me @lenpai0 and provide a link to this page. Thanks and enjoy!
