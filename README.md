@@ -51,30 +51,6 @@ Make sure the following libraries are installed:
 
 ![image](https://github.com/user-attachments/assets/f54009ed-f50c-47d8-b9e8-d6ded8fb05f4)
 
-## Getting the RFID tag 
-You will need to obtain the RFID tags name using the RFID RC522 reader. 
-
-Two options to get the RFID tag name both using the RFID reader.
-
-Option 1 - Only RFID RC522 available:
-
-- Follow this YouTube tutorial I used and follow their schematic and code. https://www.youtube.com/watch?v=lg8HRY8q004
-
-Option 2 - Both RFID RC522 and DFPlayer Mini available:
-
-- Build the circuit from the schematic above then use the code provided in this branch. Uncomment the following lines in the sketch (ctrl-f is your best friend here):
-  
-  `//Serial.print("USER ID tag :");`
-
-  `//Serial.print(myRFID.uid.uidByte[i] < 0x10 ? " 0" : " ");`
-
-  `//Serial.print(myRFID.uid.uidByte[i], HEX);`
-
-  `//Serial.println();`
-- Upload the sketch. Follow `After uploading sketch` below and open serial monitor to view feedback
-
-Either way, you should be expecting a message that says something like `USER ID tag : XX XX XX XX` I recommend copying the RFID tag somewhere like a spreadsheet.
-
 ## Storing files in SD card
 You will need to source sound files to use. Both .mp3 and .WAV are supported with the DFPlayer. 
 
@@ -99,38 +75,37 @@ I also recommend making a copy of this folder as well as writing down the names 
 
 Remember to eject the SD card before removing.
 
-## Before uploading sketch
-Download `music_box.ino`. Update the sketch to match your RFID tag name. Look for the lines like `content.substring(1) == "A1 2F 90 49"` and replace the tag ID. If you have more than two sound files, be sure to add additional code and follow the layout. 
-
-i.e. The next lines of code for song3 would look something like this and so on for additional sound files
-```
-else if (content.substring(1) == "xx xx xx xx" && spkrStatus != 3) { //change here the UID
-    //resume feature
-    if (songStatus == 3) {
-      myDFPlayer.start(); //this resumes from the paused position on the mp3 player
-
-    } else {
-      //Serial.println("Playing yy / z"); // used for feedback. uncomment and change to match song
-      myDFPlayer.playFolder(0, 2);  //folder, file
-    }
-
-    spkrStatus = 3;
-    songStatus = 3;
-  }
-```
-
-You can also change the pins for SDA, RST, software TX and software RX if needed. Keep in mind the available software serial pins for other Arduino boards https://docs.arduino.cc/learn/built-in-libraries/software-serial/
-
-## After uploading sketch
-Open serial monitor to see the feedback.
+## Uploading sketch
+Please have the circuit built prior to running the sketch. Download `music_box_V2`. Open serial monitor to see the feedback.
 
 ![image](https://github.com/user-attachments/assets/626dc969-4cf1-4701-b55a-dc0a978ed55f)
 
-Upon start up, you will see one of the two messages.
+Select baud rate to `115200 baud`.
+
+<img width="259" height="47" alt="Screenshot 2026-09-30 145121" src="https://github.com/user-attachments/assets/fc178548-0aeb-4e3c-8cb4-69fb69c5c0df" />
+
+Upon start up, you will see one of two messages.
 
 1. `"im ready"` states that initialization for all the components are successful and ready to run
-2. `"Not initialized: 1. Check the DFPlayer Mini connections 2. Insert an SD card"` Something is wrong with the DFPlayer Mini. Follow the two troubleshooting points. In my experience, sometimes power cycling the Arduino without changing anything can fix it (power cycling is a fancy industry term for turning something off and on lmao)
+2. `"Not initialized: 1. Check the DFPlayer Mini connections 2. Insert an SD card"` Something is wrong with the DFPlayer Mini. Follow the two troubleshooting points. In my experience, sometimes power cycling the Arduino without changing anything can fix it.
 
+You can also change the pins for SDA, RST, software TX and software RX if needed. Keep in mind the available software serial pins for other Arduino boards https://docs.arduino.cc/learn/built-in-libraries/software-serial/
+
+## Getting the RFID tag 
+Once the program is ready, scan any readable tag to the RFID reader. The output will look something like this:
+
+`USER ID tag : XX XX XX XX` 
+
+I recommend copying the RFID tag somewhere like a spreadsheet.
+
+Go to line 72 to find `char *songID[]`. Add your tags in order of your SD song list. ie: song 0 -> `"01 23 45 67"` song 1 -> `"89 AB CD EF 01"`. 
+
+`char *songID[] = { "01 23 45 67", "89 AB CD EF 01"};`
+
+You can also mix and match different tags. Tested with MiFare NTAG213 and NTAG215
+
+Upload the updated sketch. Now the music will play as long as the associated tag is on the reader.
+  
 ## Demo
 This is a demo of the project using the same code posted here. Here is a [YouTube link](https://www.youtube.com/watch?v=7Qq8ZaPxRZM) to the same video below
 
@@ -149,8 +124,9 @@ Song used for demo
 
 - This is the only project I had problems where my Arduino would randomly encounter "Unrecognized device" problems after a few use. Windows would suddenly not recognize the port no matter how many times I reset the board, unplug and plug the board, or update drivers. I have a good USB connector and the only way I can fix this is by resetting my computer. I'm not sure if I had installed something that is interfering the serial communication between the Arduino and Windows or if the libraries I'm using are doing something funky at the start of boot up that I am not aware of.
 
-## Vocaloid disc 
-   - binomi / MARETU https://www.thingiverse.com/thing:7042155/files
+## 3D prints
+   - binomi / MARETU https://www.printables.com/model/1531278-taste-of-beauty-binomi-maretu-vocaloid-disc-prints
+   - wonder / R-906 https://www.printables.com/model/1861616-wonder-miku-display
 
 ## Resourced used
 - RFID code and guide used: https://www.youtube.com/watch?v=lg8HRY8q004
