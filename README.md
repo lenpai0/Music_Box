@@ -75,7 +75,7 @@ I also recommend making a copy of this folder as well as writing down the names 
 
 Remember to eject the SD card before removing.
 
-## Uploading sketch
+## Uploading sketch (UPDATED!)
 Please have the circuit built prior to running the sketch. Download `music_box_V2`. Open serial monitor to see the feedback.
 
 ![image](https://github.com/user-attachments/assets/626dc969-4cf1-4701-b55a-dc0a978ed55f)
@@ -91,7 +91,7 @@ Upon start up, you will see one of two messages.
 
 You can also change the pins for SDA, RST, software TX and software RX if needed. Keep in mind the available software serial pins for other Arduino boards https://docs.arduino.cc/learn/built-in-libraries/software-serial/
 
-## Getting the RFID tag 
+## Getting the RFID tag (UPDATED!)
 Once the program is ready, scan any readable tag to the RFID reader. The output will look something like this:
 
 `USER ID tag : XX XX XX XX` 
